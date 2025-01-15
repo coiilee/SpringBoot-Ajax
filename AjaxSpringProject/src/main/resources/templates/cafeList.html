@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카페 목록</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>카페 목록</h1>
+<div id="cafeList">
+  <!-- 카페 목록 표시 영역 -->
+  <script>
+    // const queryParams = new URLSearchParams(window.location.href);
+    // const cafeId = queryParams.get('id');
+
+    const pathSegments = window.location.pathname.split('/');
+    const cafeId = pathSegments[pathSegments.length - 1];
+
+    $.ajax({
+      url: `/api/cafes/${cafeId}`,
+      method:'get',
+      success: function (data){
+        let cafeList;
+        cafeList = `<p><strong>이름: ${data.name}</strong></p>
+         <p><strong>주소: ${data.address}</strong></p>
+          <p><strong>전화번호: ${data.phoneNumber}</strong></p>
+          <p><strong>오픈 시간: ${data.openingTime}</strong></p>
+       <p><strong>닫는 시간: ${data.closingTime}</strong></p>
+      <p><strong>설명 : ${data.description}</strong></p>` ;
+
+      $('#cafeList').html(cafeList);
+        } ,
+      error: function (){
+        $("#cafeList").html('<p>데이터를 가져오는데 문제가 발생했습니다.</p>');
+      }
+
+    })
+
+
+  </script>
+</div>
+</body>
+</html>

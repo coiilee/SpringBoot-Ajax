@@ -10,4 +10,6 @@ public interface CafeMapper {
 
     List<Cafe> getAllCafes();
 
+    Cafe getCafeById(int id);
+
 }
