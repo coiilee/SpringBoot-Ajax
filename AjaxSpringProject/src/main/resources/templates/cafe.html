@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 카페 </title>
+    <link rel="icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div class="main-container" id="mainContainer">
+<script>
+$.ajax({
+  url: 'api/cafes',
+  method: 'get',
+  success:
+          function (data) {
+    console.log("error : ");
+    if(data.length >0) {
+      let cafeInfo;
+    $.each(data, function (index, cafes) {
+      cafeInfo +=
+      `<p><strong> 카페이름 : </strong>${cafes.name}</p>
+      <p><strong> 주소 : </strong>${cafes.address}</p>
+      <p><strong> 연락처 : </strong>${cafes.phoneNumber}</p>
+      <p><strong> 오픈시간 : </strong>${cafes.openingTime}</p>
+      <p><strong> 닫는시간 : </strong>${cafes.closingTime}</p> `;
+
+            }
+    )
+    $("#mainContainer").html(cafeInfo);
+    }
+  }, error : function () {
+     $('#mainContainer').html('<p>오류가 발생했습니다.</p>');
+  }
+
+})
+</script>
+</div>
+</body>
+</html>
+

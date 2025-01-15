@@ -11,6 +11,7 @@ public class CafeServiceImpl implements CafeService {
     @Autowired
     CafeMapper cafeMapper;
 
+    @Override
     public List<Cafe> getAllCafes(){
         return cafeMapper.getAllCafes();
     };
