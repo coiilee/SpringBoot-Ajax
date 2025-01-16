@@ -67,19 +67,7 @@ public class AjaxController {
         return map;
     }
 
-    @Autowired
-    private CafeService cafeService;
 
-    @GetMapping("/api/cafes")
-    public List<Cafe> getAllCafes() {
-        List<Cafe> cafes = cafeService.getAllCafes();
-        return cafes;
-    }
-
-    @GetMapping("/api/cafes/{id}")
-    public Cafe getCafeById(@PathVariable("id") int id){
-        return   cafeService.getCafeById(id)  ;
-    }
 
 
 }
