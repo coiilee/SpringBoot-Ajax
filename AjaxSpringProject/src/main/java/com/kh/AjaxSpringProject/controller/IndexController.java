@@ -40,6 +40,15 @@ public class IndexController {
         return "jqueryAjax/randomLogo";
     }
 
+    @GetMapping("/get/product")
+    public String getProduct(){
+        return "jqueryAjax/product";
+    }
+
+    @GetMapping("/get/kakaoLogin")
+    public String getKakaoLogin(){
+        return "jqueryAjax/kakaoLogin";
+    }
     }
 
 
