@@ -31,6 +31,7 @@ public class CafeAjaxController {
 
     @GetMapping("/api/cafes/{id}")
     public Cafe getCafeById(@PathVariable("id") int id){
+        System.out.println("++++++" +  cafeService.getCafeById(id) );
         return   cafeService.getCafeById(id)  ;
     }
 }

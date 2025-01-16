@@ -51,8 +51,6 @@ public class AjaxController {
     }
 
 
-
-
     @GetMapping("/api/hello")
     public String hello() {
         return "hello";

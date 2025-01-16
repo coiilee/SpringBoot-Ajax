@@ -4,62 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> 카페 목록 </title>
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
 <div class="main-container" id="mainContainer">
+
+</div>
 <script>
 
-$.ajax({
-  url: '/api/cafes',
-  method: 'get',
-  success:
-          function (data) {
-    console.log("error : ");
-    if(data.length >0) {
-      let cafeInfo="";
-    $.each(data, function (index, cafes) {
-      cafeInfo +=
-      `<p><strong>카페 이름 : </strong>${cafes.name}<a href="/cafe/detail/${cafes.id}">이동</a></p>`
+    $.ajax({
+        url: '/api/cafes',
+        method: 'get',
+        success:
+            function (data) {
+                console.log("error : ");
+                if (data.length > 0) {
+                    let cafeInfo = "";
+                    $.each(data, function (index, cafes) {
+                            //for문(each문)이기 때문에 한바퀴 돌고 더해주고 한바퀴 돌고 더해주고 해야해서 +=으로 써야함
+                            cafeInfo +=
+                                `<p><strong>카페 이름 : </strong>${cafes.name}<a href="/cafe/detail?id=${cafes.id}">이동</a></p>`
+                        }
+                    )
+                    $("#mainContainer").html(cafeInfo);
+                }
+            },
+        error:
+            function (data) {
+                $('#mainContainer').append('<p>오류가 발생했습니다.</p>');
             }
-    )
-    $("#mainContainer").html(cafeInfo);
-    }
-  }, error : function () {
-     $('#mainContainer').html('<p>오류가 발생했습니다.</p>');
-  }
 
-})
-//첫화면에 카페 정보들만 불러오는 코드
-// $.ajax({
-//     url: '/api/cafes',
-//     method: 'get',
-//     success:
-//         function (data) {
-//                 $.each(data, function (index, cafes) {
-//                     $('#mainContainer').append(`
-//
-//                     <p>카페이름 : ${cafes.name}</p>
-//                     <p>카페주소 : ${cafes.address}</p>
-//                     <p>카페번호 : ${cafes.phoneNumber}</p>
-//                     <p>오픈시간 : ${cafes.openingTime}</p>
-//                     <p>종료시간 : ${cafes.closingTime}</p>
-//                     <p>카페설명 : ${cafes.description}</p>
-//                     `)
-//                     })
-//
-//                 $("#mainContainer").html(cafeInfo);
-//             },
-//                 error : function (error) {
-//                         console.log(error);
-//                         $('#mainContainer').html('<p>오류가 발생했습니다.</p>');
-//     }
-//
-// })
+    })
+    //첫화면에 카페 정보들만 불러오는 코드
+    // $.ajax({
+    //     url: '/api/cafes',
+    //     method: 'get',
+    //     success:
+    //         function (data) {
+    //                 $.each(data, function (index, cafes) {
+    //                     $('#mainContainer').append(`
+    //
+    //                     <p>카페이름 : ${cafes.name}</p>
+    //                     <p>카페주소 : ${cafes.address}</p>
+    //                     <p>카페번호 : ${cafes.phoneNumber}</p>
+    //                     <p>오픈시간 : ${cafes.openingTime}</p>
+    //                     <p>종료시간 : ${cafes.closingTime}</p>
+    //                     <p>카페설명 : ${cafes.description}</p>
+    //                     `)
+    //                     })
+    //
+    //                 $("#mainContainer").html(cafeInfo);
+    //             },
+    //                 error : function (error) {
+    //                         console.log(error);
+    //                         $('#mainContainer').html('<p>오류가 발생했습니다.</p>');
+    //     }
+    //
+    // })
 </script>
-</div>
+
 </body>
 </html>
 
