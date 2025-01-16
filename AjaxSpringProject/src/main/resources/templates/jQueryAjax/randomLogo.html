@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤로고 생성하기</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="logo-container">
+    <img id="logo" src="" alt="">
+</div>
+<button id="btnLogo">로고 생성하기</button>
+
+<script>
+    //api url = /get/randomLogo
+    //avatar-container = logo-container = css 같게 설정
+    //이름은 avatar-container 이어야함
+    //로고 생성하는 버튼 만들기
+    //https://logotypes.dev/?ref=freepublicapis.com
+    //api를 확인하고 랜덤으로 가지고 올 수 있는 주소를 사용해서 로고 이미지 가져오기.
+    //단순 랜덤 api 써져있는게 있으니 찾아서 사용할 것.
+        const apiUrl = `https://www.logotypes.dev/random/data`;
+        function loadRandom(){
+        $.ajax({
+            url: apiUrl,
+            method : 'get',
+            success: function (data){
+                        console.log("data :" + data);
+                        $('#logo').attr('src',data.logo);
+            },
+            error:
+                    function (){
+                        $(".logo-container").html('<p>데이터를 가져오는데 문제가 생겼습니다.</p>');
+                    }
+        })
+        }
+        loadRandom(); //화면 켜서 자동으로 하나 가져온 첫 이미지.
+
+    $("#btnLogo").click(function (){
+        loadRandom();
+    })
+
+    // function getRandomLogo() {
+    //     $('#logo').attr('src',apiUrl);
+    // }
+    //
+    // $("#btnLogo").click(function (){
+    //     getRandomLogo();
+    // })
+
+</script>
+</body>
+</html>
