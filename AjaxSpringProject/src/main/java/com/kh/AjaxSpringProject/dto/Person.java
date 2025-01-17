@@ -1,6 +1,18 @@
 package com.kh.AjaxSpringProject.dto;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
+
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     //id, email, username, password, firstname, lastname, phone, city, street, street_number, zipcode, geolocation_lat, geolocation_long
     private int id;
     private String email;

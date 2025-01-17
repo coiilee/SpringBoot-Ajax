@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저들</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>유저들 정보</h1>
+<div class="person-container" id="persons"></div>
+
+<script>
+    //users의 데이터를 가져와서 유저 정보 모두 보기 해줄 것
+    //user 상세정보 이동하기
+    $.ajax({
+      url : `/api/persons`,
+      method: 'get',
+      success :
+                function (data){
+                      let personInfo="";
+                    $.each(data,function (index,persons){
+                      personInfo +=
+                          `<p>유저 정보 : ${persons.username}<a href="/get/persons/detail?id=${persons.id}"> 이동</a></p>`
+
+                    })
+                  $("#persons").append(personInfo);
+                },
+      error: function (data) {
+              $('#persons').append('<p>오류가 발생했습니다.</p.');
+
+      }
+
+    })
+</script>
+
+</body>
+</html>

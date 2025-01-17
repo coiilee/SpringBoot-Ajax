@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세 페이지</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1>상세 정보</h1>
+    <div id="personDetail"></div>
+
+
+
+<script>
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const personId = queryParams.get('id');
+
+    $.ajax({
+        url: `/api/persons/${personId}`,
+        method: "get",
+        success: function (data){
+            let personDetail =
+            `<p>이메일 : ${data.email}</p>`
+            `<p>이름 : ${data.username}</p>`
+            `<p>비밀번호 :${data.password}</p>`
+            `<p>${data.firstname}</p>`
+            `<p>${data.lastname}</p>`
+            `<p>${data.phone}</p>`
+            `<p>${data.city}</p>`
+            `<p>${data.street}</p>`
+            `<p>${data.streetNumber}</p>`
+            `<p>${data.zipcode}</p>`
+            `<p>${data.geolocationLat}</p>`
+            `<p>${data.geolocationLong}</p>`;
+
+            $('#personDetail').append(personDetail);
+        },
+        error: function (error){
+            console.log(error);
+            $("#cafeList").append('<p>데이터를 가져오는데 문제가 발생했습니다.</p>');
+        }
+    })
+
+
+</script>
+</body>
+</html>
