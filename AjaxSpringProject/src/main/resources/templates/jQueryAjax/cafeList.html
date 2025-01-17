@@ -11,15 +11,37 @@
 <div id="cafeList"></div>
   <!-- 카페 목록 표시 영역 -->
   <script>
+    // window.location.href
+    //url에 쿼리 문자열을 사용할 수 있도록 설정
+    //현재 웹페이지 URL에서 ? 뒤에 오는 쿼리 문자열을 반환함.
+    /*
+    https://www.kht.co.kr/page?name=gildong&age=40
+    위 URL에서
+    window.location.search의 값은
+    ?name = gildong&age=40
+    즉, name = gildong
+        age = 40
+    위 주소에서 name을 가져오길 원한다면
+    .get("name");
+    위 주소에서 age를 가져오기 원한다면
+    .get("age")
+     */
+    //http://localhost:8080/cafe?id=아이디값
+    //queryParams 안에는 ? 뒤에 존재하는 키=키의값이 존재하고
+    //2개 이상은 모두 &로 가져옴
+
     const queryParams = new URLSearchParams(window.location.search);
-    const cafeId = queryParams.get('id');
+    console.log("queryParam: "+queryParams);
+    const cafeId = queryParams.get('id'); // ? 뒤에 키 이름으로 id라 적힌 값을 가지고 있는 상태
 
     // const pathSegments = window.location.pathname.split('/');
     // const cafeId = pathSegments[pathSegments.length - 1];
 
 
     $.ajax({
-      url: `/api/cafes/${cafeId}`,
+      // ${} 표기는 문자열 사이에서 자바스크립트를 작성해야할 때 사용하는 것
+      // url: `/api/cafes/${cafeId}`,
+      url : "/api/cafes/"+id,
       method: 'get',
       success: function (data) {
         console.log("data : " +data);
